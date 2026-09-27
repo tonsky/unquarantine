@@ -1,0 +1,82 @@
+{
+  "fill" : {
+    "linear-gradient" : [
+      "display-p3:0.05227,0.11473,0.20884,1.00000",
+      "display-p3:0.02250,0.07671,0.15841,1.00000"
+    ]
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "fill" : {
+            "linear-gradient" : [
+              "display-p3:0.97165,0.83062,0.42974,1.00000",
+              "display-p3:0.94681,0.63709,0.31387,1.00000"
+            ]
+          },
+          "image-name" : "Frame 6.svg",
+          "name" : "Frame 6"
+        }
+      ],
+      "name" : "Group",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.3
+      }
+    },
+    {
+      "layers" : [
+        {
+          "fill" : {
+            "linear-gradient" : [
+              "display-p3:0.13666,0.33304,0.58407,1.00000",
+              "display-p3:0.96993,0.81885,0.39307,1.00000"
+            ],
+            "orientation" : {
+              "start" : {
+                "x" : 0.772706619308184,
+                "y" : 0.1523391886264259
+              },
+              "stop" : {
+                "x" : 0.46206442974458817,
+                "y" : 0.5382573472211617
+              }
+            }
+          },
+          "image-name" : "Frame 8.svg",
+          "name" : "Frame 8"
+        },
+        {
+          "fill" : {
+            "linear-gradient" : [
+              "display-p3:0.20849,0.47877,0.74296,1.00000",
+              "display-p3:0.13923,0.33870,0.59865,1.00000"
+            ]
+          },
+          "image-name" : "Frame 7.svg",
+          "name" : "Frame 7"
+        }
+      ],
+      "name" : "Group",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.3
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}
