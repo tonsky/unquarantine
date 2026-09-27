@@ -14,7 +14,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         return image
     }()
 
-    func applicationDidFinishLaunching(_ notification: Notification) {
+    func applicationWillFinishLaunching(_ notification: Notification) {
         // Avoid two monitors if the app is launched from more than one location.
         if let identifier = Bundle.main.bundleIdentifier,
            NSRunningApplication.runningApplications(withBundleIdentifier: identifier)
@@ -25,6 +25,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
         NSApp.setActivationPolicy(.accessory)
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        statusItem.behavior = .removalAllowed
         setStatus(tooltip: "Unquarantine — watching Downloads")
 
         let menu = NSMenu()
@@ -37,8 +38,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         quitItem.target = self
         menu.addItem(quitItem)
         statusItem.menu = menu
-        updateLoginItem()
+        statusItem.isVisible = true
+    }
 
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        guard statusItem != nil else { return }
         let downloads = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0]
         monitor = DownloadMonitor(folder: downloads) { [weak self] state in
             switch state {
@@ -51,6 +55,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             }
         }
         monitor?.start()
+    }
+
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        statusItem?.isVisible = true
+        return true
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -100,9 +109,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private func setStatus(tooltip: String, hasError: Bool = false) {
         let image = hasError
             ? NSImage(systemSymbolName: "exclamationmark.triangle", accessibilityDescription: "Unquarantine")
-            : menuBarIcon
+            : (menuBarIcon ?? NSImage(systemSymbolName: "sparkles", accessibilityDescription: "Unquarantine"))
         image?.isTemplate = true
         statusItem.button?.image = image
+        statusItem.button?.title = image == nil ? "U" : ""
         statusItem.button?.toolTip = tooltip
         statusItem.button?.setAccessibilityLabel("Unquarantine")
     }
