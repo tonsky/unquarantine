@@ -15,16 +15,18 @@ A: That depends on what you download. Unquarantine removes quarantine flags auto
 
 Requires macOS 13 or later.
 
-1. Download [Unquarantine](https://github.com/tonsky/unquarantine/releases/latest/download/Unquarantine.zip).
-2. Remove the quarantine attribute by running:
+1. Download [Unquarantine.zip](https://github.com/tonsky/unquarantine/releases/latest/download/Unquarantine.zip).
+2. Unzip.
+3. Ironically, remove the quarantine attribute by running:
 
 ```sh
 xattr -dr com.apple.quarantine Unquarantine.app
 ```
 
-3. Move the app to `/Applications` and launch it.
+4. Move the app to `/Applications`.
+5. Launch it.
 
-Hopefully, this is the last time you’ll have to do that.
+Hopefully, this is the last time you’ll have to unquarantine anything.
 
 ## Attributions
 
